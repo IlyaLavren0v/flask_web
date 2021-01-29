@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    {% for book in books %}
+        <div class="card">
+        <div class="card-header">
+            Author of the publication: <em><strong>{{ book.owner.username }}.</strong></em> Published by {{ book.published.strftime('%Y-%m-%d %H:%M') }}
+        </div>
+        
+            <div class="card-body">
+                <a href="{{ url_for('book_detail', id=book.id) }}"><ins><h5>{{ book.title }}</h5></ins><br></a>
+                <strong><p>Author: {{ book.author }}</p></strong>
+                <strong><p>Pages amount: {{ book.pages_amount }}</p></strong>
+                
+            </div>
+        </a>
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base_card.html' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block card_header %}
+    <h3>{{ book.title }}</h3>
+{% endblock %}
+
+{% block card_body %}
+    <p>
+        <b>{{ book.owner.username }}</b> published at {{ book.published.strftime('%Y-%m-%d %H:%M') }}
+    </p> <hr>
+    <p>
+        {{ book.author }}
+    </p>
+    <p>
+        {{ book.pages_amount }}
+    </p>
+{% endblock %}
+
+{% block card_footer %}
+<small>
+    <a href="{{ url_for('book_delete', id=book.id )}}">
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
+    </a>
+
+    <a href="{{ url_for('book_update', id=book.id )}}">
+        <button type="submit" class="btn btn-outline-primary">Edit</button>
+    </a>
+
+    <a href="{{ url_for('books_list')}}">
+        <button type="submit" class="btn btn-outline-success">To all Books</button>
+    </a>
+</small>
+{% endblock %}
+

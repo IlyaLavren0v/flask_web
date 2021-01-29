@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %}Jeff Bizon{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-7"><a class="nav-link active" href="{{ url_for('books_list') }}">Books<span class="sr-only">(current)</span></a></h1>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Books{% endblock %}
+
+{% block content %}
+    {% for book in books|sort(attribute='rating', reverse = True) %}
+        <div class="card">
+        <div class="card-header">
+            Author of the publication: <em><strong>{{ book.book_owner.username }}.</strong></em> Published by {{ book.created }}
+        </div>
+        
+            <div class="card-body">
+                <a href="{{ url_for('book_detail', id=book.id) }}"><ins><h5>{{ book.title }}</h5></ins></a><br>
+                <strong><p>Author: {{ book.author }}</p></strong>
+                <strong><p>Raiting: {{ book.rating }}</p></strong>
+                </a>
+            </div>
+        </a>
+        <div class="card-footer text-muted text-center">
+            <a href="{{ url_for('book_delete', id=book.id )}}">Delete</a> | <a href="{{ url_for('book_update', id=book.id )}}">Edit</a>
+        </div>
+        </div>
+        <br>
+    {% endfor %}
+
+{% endblock %}

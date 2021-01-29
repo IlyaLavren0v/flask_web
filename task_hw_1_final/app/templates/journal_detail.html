@@ -1,0 +1,29 @@
+{% extends 'base_card.html' %}
+
+{% block title %}{{ journal.title }}{% endblock %}
+
+{% block card_header %}
+    <h3>{{ journal.title }}</h3>
+{% endblock %}
+
+{% block card_body %}
+    <p>
+        <b>{{ journal.journal_owner.username }}</b> created at {{ journal.created }}
+    </p> <hr>
+    <p>
+        {{ journal.editor }}
+    </p>
+    <p>
+        {{ journal.page_amount }}
+    </p>
+{% endblock %}
+
+{% block card_footer %}
+<small>
+    <a href="{{ url_for('journal_delete', id=journal.id) }}">Delete</a> | <a href="{{ url_for('journal_update', id=journal.id) }}">Edit</a>
+</small>
+<br>
+<span>
+    Back to <a href="{{ url_for('journals_list') }}">to all journals</a>
+</span>
+{% endblock %}

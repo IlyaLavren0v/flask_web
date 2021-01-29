@@ -1,0 +1,36 @@
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
+from .models import User
+
+class UserRegisterForm(FlaskForm):
+    username = StringField(label="Username", validators=[DataRequired()])
+    email = StringField("Email", validators=[DataRequired(), Email()])
+    password = PasswordField(label='Password', validators=[DataRequired()])
+    password_again = PasswordField(label='Repeat password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField(label="Register")
+
+    def validate_username(self, username):
+        user = User.query.filter_by(username=username.data).first()
+        if user is not None:
+            raise ValidationError("A user with this name already exists.")
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is not None:
+            raise ValidationError("A user with this email already exists")
+
+class BookForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    author = StringField("Author", validators=[DataRequired()])
+    pages_amount = StringField("Pages amount", validators=[DataRequired()])
+    submit = SubmitField('Publication')
+
+class LoginForm(FlaskForm):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember =  BooleanField('Remember me?')
+    submit = SubmitField('Log In')
+
+class LogoutForm(FlaskForm):
+    submit = SubmitField('Log Out')

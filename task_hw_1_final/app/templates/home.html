@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Jeff Bizon{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-7"><a class="nav-link active" href="{{ url_for('books_list') }}">Books<span class="sr-only">(current)</span></a></h1>
+    <h1 class="display-7"><a class="nav-link active" href="{{ url_for('journals_list') }}">Journals<span class="sr-only">(current)</span></a></h1>
+    <h1 class="display-7"><a class="nav-link active" href="{{ url_for('books_reversed') }}">Books reversed<span class="sr-only">(current)</span></a></h1>
+    <h1 class="display-7"><a class="nav-link active" href="{{ url_for('journals_reverse') }}">Journals reversed<span class="sr-only">(current)</span></a></h1>
+</div>
+{% endblock %}

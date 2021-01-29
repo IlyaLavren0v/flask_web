@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Journals{% endblock %}
+
+{% block content %}
+    {% for journal in journals|sort(attribute='page_amount', reverse = True) %}
+        <div class="card">
+        <div class="card-header">
+            Author of the publication: <em><strong>{{ journal.journal_owner.username }}.</strong></em> Published by {{ journal.created }}
+        </div>
+        <div class="card-body">
+            <a href="{{ url_for('journal_detail', id=journal.id) }}"><ins><h5>{{ journal.editor }}</h5></ins></a><br>
+            <strong><p>Title: {{ journal.title }}</p></strong>
+            <strong><p>Number of pages: {{ journal.page_amount }}</p></strong>
+        </div>
+        <div class="card-footer text-muted text-center">
+            <a href="{{ url_for('journal_delete', id=journal.id) }}">Delete</a> | <a href="{{ url_for('journal_update', id=journal.id) }}">Edit</a>
+        </div>
+        </div>
+        <br>
+    {% endfor %}
+{% endblock %}
