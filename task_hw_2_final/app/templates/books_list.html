@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% block title %}Jeff Bizon{% endblock %}
+
+{% block content %}
+    {% for book in books %}
+        <article class="media content-section">
+          <img class="rounded-circle account-img" src="{{ url_for('static', filename='media/' + book.book_owner.image_file)}}">
+          <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Author of the publication: <em><strong>{{ book.book_owner.username }}.</strong></em> Published by {{ book.created }}</a>
+            </div>
+            <h2>
+                <a class="article-title" href="{{ url_for('book_detail', id=book.id)}}">
+                  {{ book.title }}
+                </a>
+            </h2>
+            <strong><p class="article-content">Author: {{ book.author }}</p></strong>
+            <strong><p class="article-content">Raiting: {{ book.rating }}</p></strong>
+          </div>
+          <img class="fit-picture" height="250px" width="200px" src="{{ url_for('static', filename='media/' + book.image_file)}}">
+        </article>
+    {% endfor %}
+{% endblock content %}

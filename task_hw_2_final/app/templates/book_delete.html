@@ -1,0 +1,14 @@
+{% extends 'base_card.html'%}
+
+{% block title %}Deleting a book{% endblock %}
+
+{% block card_header %}
+    <h3>Deleting a book {{ book.title }}</h3>
+{% endblock %}
+
+{% block card_body %}
+    <hp>Are yoy sure you want to delete <b>{{ book.title }}</b></p>
+        <form action="" method="POST">
+            <button type="submit" class="btn btn-outline-danger">Delete</button>
+        </form>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}To publish{% endblock %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-7"><a class="nav-link active" href="{{ url_for('book_create') }}">Publish a book<span class="sr-only">(current)</span></a></h1>
+        <h1 class="display-7"><a class="nav-link active" href="{{ url_for('journal_create') }}">Publish a journal<span class="sr-only">(current)</span></a></h1>
+    </div>
+{% endblock %}

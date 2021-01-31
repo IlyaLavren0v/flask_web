@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Journals{% endblock %}
+
+{% block content %}
+    {% for journal in journals|sort(attribute='page_amount', reverse = True) %}
+    <article class="media content-section">
+        <img class="rounded-circle account-img" src="{{ url_for('static', filename='media/' + journal.journal_owner.image_file)}}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">Author of the publication: <em><strong>{{ journal.journal_owner.username }}.</strong></em> Published by {{ journal.created }}</a>
+            </div>
+            <h2>
+                <a class="article-title" href="{{ url_for('journal_detail', id=journal.id)}}">
+                    {{ journal.title }}
+                </a>
+            </h2>
+            <strong><p class="article-content">Editor: {{ journal.editor }}</p></strong>
+            <strong><p class="article-content">Pages amunt: {{ journal.page_amount }}</p></strong>
+        </div>
+        <img class="fit-picture" height="250px" width="200px" src="{{ url_for('static', filename='media/' + journal.image_file)}}">
+    </article>
+        <br>
+    {% endfor %}
+{% endblock %}
